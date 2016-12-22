@@ -1,0 +1,17 @@
+#Auto-generated, changes will be lost if ./build-image.sh is re-run
+FROM andreadotti/geant4:10.3
+MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
+
+#Add Azure CLI
+RUN apt update -y && apt install -y npm
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN npm install -g azure-cli && azure telemetry --disable
+
+ADD binaries/*.tgz /
+ENV PATH="/usr/local/geant4/applications/bin:$PATH"
+ENV LD_LIBRARY_PATH="/usr/local/geant4/applications/lib:$LD_LIBRARY_PATH"
+RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest-*/validation/crosssections/doXS.sh
+RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest-*/validation/crosssections/doXS_EM.sh
+RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest-*/validation/crosssections/doXS_had.sh  
+COPY runme.sh /runme.sh
+CMD [ "/runme.sh" ]
