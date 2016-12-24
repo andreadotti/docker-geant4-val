@@ -3,9 +3,9 @@ FROM andreadotti/geant4
 MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
 
 #Add Azure CLI
-RUN apt update -y && apt install -y npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g azure-cli && azure telemetry --disable
+#RUN apt update -y && apt install -y npm
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
+#RUN npm install -g azure-cli && azure telemetry --disable
 
 ADD binaries/*.tgz /
 ENV PATH="/usr/local/geant4/applications/bin:$PATH"
@@ -15,4 +15,5 @@ RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/cros
 RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_had.sh  
 COPY runme.ProcessTest.sh /runme.sh
 COPY runme.ProcessTest.xs.sh /runme.xs.sh
+WORKDIR /usr/local/geant4/applications/share/ProcessTest/validation
 CMD [ "/runme.sh" ]

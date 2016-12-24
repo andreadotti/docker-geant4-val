@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-cd /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
 
 echo "EM Cross-sections"
