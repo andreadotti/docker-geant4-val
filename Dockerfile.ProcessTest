@@ -10,6 +10,7 @@ MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
 ADD binaries/*.tgz /
 ENV PATH="/usr/local/geant4/applications/bin:$PATH"
 ENV LD_LIBRARY_PATH="/usr/local/geant4/applications/lib:$LD_LIBRARY_PATH"
+ENV G4LENDDATA=/usr/local/geant4/data/G4ND_v1.3
 RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS.sh
 RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_EM.sh
 RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_had.sh  
