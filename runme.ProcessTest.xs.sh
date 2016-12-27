@@ -5,9 +5,7 @@ set -e
 if [ $# -ge 1 ];then
    segment=$1
    if [ $# -ge 2 ];then
-      totsegms=$1
-   else
-      totsegms=10
+      totsegms=$2
    fi
 fi
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
@@ -19,7 +17,7 @@ echo "Had Cross-sections"
 ./doXS_had.sh $totsegms $segment
 
 #Copy output files
-mkidr -p /output
+mkdir -p /output
 tar czf /output/crosssections${segment}.tgz *.log *.json
 
 #Copy to final location
