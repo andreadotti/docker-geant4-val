@@ -31,8 +31,8 @@ Where:
          to number 18 (G4_Ar). Note: the last group contains all elements up to G4_U 
          included. So in the example groups 1 to 9 have each 9 elements and group 10 
          calculates cross-sections for the remaining 11 elements. 
-      3. Passing nothing will run calculations on the entire periodic table
+     3. Passing nothing will run calculations on the entire periodic table
 Ouput will be located in the docker instance */output* directory, in the example shared 
 with host's *$PWD* directory. The output consists of a tarball file: crosssections*.tgz 
 **Note on timing**: Calculating cross-sections can take some time, as an example on my 
-laptop a single element takes ~20 minutes.
+laptop a single element takes ~20 minutes and tarball dimension is ~2MB.
