@@ -8,6 +8,8 @@ if [ $# -ge 1 ];then
       totsegms=$2
    fi
 fi
+
+cd validation
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
 
 cd crosssections
@@ -20,4 +22,3 @@ echo "Had Cross-sections"
 mkdir -p /output
 tar czf /output/crosssections${segment}.tgz *.log *.json
 
-#Copy to final location

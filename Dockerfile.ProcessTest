@@ -7,14 +7,33 @@ MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
 #RUN ln -s /usr/bin/nodejs /usr/bin/node
 #RUN npm install -g azure-cli && azure telemetry --disable
 
+LABEL org.geant4.processtest.installation_dir="/usr/local/geant4/applications" \
+      org.geant4.processtest.macro_dirs="share/ProcessTest/validation" \
+      org.geant4.processtest.default_macro_name="share/ProcessTest/run.mac" \
+      org.geant4.processtest.readme="/ProcessTest.README.md" \
+      org.geant4.processtest.docs="share/ProcessTest/README.md share/validation/crosssections/README.md" \
+      org.geant4.processtest.license="share/ProcessTest/LICENSE.txt" \
+      org.geant4.processtest.url="https://gitlab.cern.ch/adotti/ProcessTest" \
+      org.geant4.processtest.bins="bin/ProcessTest" \
+      org.geant4.processtest.output="/output/*"
+
+#Application Specific Labels
+LABEL org.geant4.processtest.cross_sections_dir="share/ProcessTest/validation/crosssections" 
+    
+
 ADD binaries/*.tgz /
-ENV PATH="/usr/local/geant4/applications/bin:$PATH"
-ENV LD_LIBRARY_PATH="/usr/local/geant4/applications/lib:$LD_LIBRARY_PATH"
-ENV G4LENDDATA=/usr/local/geant4/data/GND_v1.3
-RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS.sh
-RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_EM.sh
-RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_had.sh  
+
+ENV PATH="/usr/local/geant4/applications/bin:$PATH" \
+    LD_LIBRARY_PATH="/usr/local/geant4/applications/lib:$LD_LIBRARY_PATH" \
+    G4LENDDATA=/usr/local/geant4/data/GND_v1.3
+
+RUN chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS.sh && \
+    chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_EM.sh && \
+    chmod ugo+x /usr/local/geant4/applications/share/ProcessTest/validation/crosssections/doXS_had.sh  
+
 COPY runme.ProcessTest.sh /runme.sh
 COPY runme.ProcessTest.xs.sh /runme.xs.sh
-WORKDIR /usr/local/geant4/applications/share/ProcessTest/validation
-CMD [ "/runme.sh" ]
+COPY README.md /ProcessTest.README.md
+
+WORKDIR /usr/local/geant4/applications/share/ProcessTest
+CMD [ "/runme.sh", "FTFP_BERT" , "run.mac" ]
