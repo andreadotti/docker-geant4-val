@@ -7,7 +7,19 @@ The current application is **ProcessTest** an application used to perform simula
 
 This documentation serves as a brief overview of how to run the application container.
 
-See: https://hub.docker.com/r/andreadotti/geant4/ and https://github.com/andreadotti/docker-geant4
+Geant4 docker images: https://hub.docker.com/r/andreadotti/geant4/ images created following instructions at:
+https://github.com/andreadotti/docker-geant4
+
+and application source-code: https://gitlab.cern.ch/adotti/ProcessTest (not a public repo yet).
+
+Build the container image
+--------------------------------
+
+1. To build the image it is assumed you already have the binaries of the application following the instructions at:
+     https://github.com/andreadotti/docker-geant4 .
+2. Edit `Dockerfile.ProcessTest` if needed, in particular you will need to modify the Geant4 version 
+     number in the `FROM` field.
+3. Build the image: `docker build -f Dockerfile.ProcessTest -t <tag>`.
 
 Get the container image
 ------------------------------
@@ -18,7 +30,7 @@ the errors about databases not found. The last line will tell you the version of
 **Geant4 Databases**: Databases are not included in the image, specify as a docker volume the location of the databases.
 
 Labels
-------
+--------
 In the following we make use of docker labels to store values of paths and others.  
 The labels have the format: `org.geant4.processtest.<variable>`. To see all labels exported by the this image type:
 `docker inspect --format='{{.Config.Labels}}' <inageID>`.  
