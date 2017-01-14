@@ -1,4 +1,3 @@
-#Auto-generated, changes will be lost if ./build-image.sh is re-run
 FROM andreadotti/geant4
 MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
 

@@ -6,13 +6,22 @@ if [ $# -ne 2 ];then
 fi
 
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
-echo "Geant4 Version:"`geant4-config --version`
+echo "Geant4 Version: "`geant4-config --version`
 
-ProcessTest -f CSV -p $1 $2
+#Removed initial "[./]validation/" final "/run.mac" and replace "/" with "-"
+conf=`echo $2 | sed -r 's/^\.?\/?validation\///' | sed 's/\/run.mac//' | sed 's/\//-/g'`
 
+echo "Starting, output in $PWD/${1}-${conf}.cout.log and $PWD/${1}-${conf}.cerr.log"
+ProcessTest -f CSV -p $1 $2 1> ${1}-${conf}.cout.log 2> ${1}-${conf}.cerr.log  
+
+echo "Done, copying output to /output/${1}-${conf}.tgz"
 #Copy output files
-cond=`echo $2 | sed 's/validation\///' | sed 's/\/run.mac//' | sed 's/\//-/g'`
 mkdir -p /output
-#If switching to ROOT/AIDA format add output, change .csv with appropriate
-tar czf /output/${1}-${conf}.tgz *.csv *.json *.ps  
+
+#Some files may be optional... Avoid script to exit immediately and 
+#create list of files
+set +e
+files=`ls *.csv *.root *.xml *.log *.ps *.json 2> /dev/null` 
+set -e
+tar czf /output/${1}-${conf}.tgz ${files}
 
