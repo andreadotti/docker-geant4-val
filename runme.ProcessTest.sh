@@ -12,8 +12,10 @@ echo "Geant4 Version: "`geant4-config --version`
 conf=`echo $2 | sed -r 's/^\.?\/?validation\///' | sed 's/\/run.mac//' | sed 's/\//-/g'`
 
 echo "Starting, output in $PWD/${1}-${conf}.cout.log and $PWD/${1}-${conf}.cerr.log"
+set +e
 ProcessTest -f CSV -p $1 $2 1> ${1}-${conf}.cout.log 2> ${1}-${conf}.cerr.log  
 
+set -e
 echo "Done, copying output to /output/${1}-${conf}.tgz"
 #Copy output files
 mkdir -p /output
