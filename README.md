@@ -93,7 +93,7 @@ Single interactions can be simulated using one of the `run.mac` macros the locat
 For interactive sessions, the application should be executed from:
 `${org.geant4.processtest.installation_dirs}/${org.geant4.processtest.macro_dirs}/../`.   
 
-Run the following command to see all available macros: `docker run --rm $instanceid find . -name run.mac`.
+Run the following command to see all available macros: `docker run --rm $instanceid find validation -name run.mac`.
 
 To run a given configuration:
 ```
