@@ -9,6 +9,9 @@ if [ $# -ge 1 ];then
    fi
 fi
 
+#This is needed because unfortunately Azure changes the working dir
+cd /usr/local/geant4/applications/share/ProcessTest
+
 cd validation
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
 

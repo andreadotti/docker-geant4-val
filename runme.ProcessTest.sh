@@ -5,6 +5,9 @@ if [ $# -ne 2 ];then
     exit 1
 fi
 
+#This is needed because Azure changes the Workging dir
+cd /usr/local/geant4/applications/share/ProcessTest
+
 echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
 echo "Geant4 Version: "`geant4-config --version`
 
