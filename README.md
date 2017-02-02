@@ -19,7 +19,7 @@ Build the container image
      https://github.com/andreadotti/docker-geant4 .
 2. Edit `Dockerfile.ProcessTest` if needed, in particular you will need to modify the Geant4 version 
      number in the `FROM` field.
-3. Build the image: `docker build -f Dockerfile.ProcessTest -t <tag>`.
+3. Build the image: `docker build -f Dockerfile.ProcessTest -t <tag> .`
 
 Get the container image
 ------------------------------

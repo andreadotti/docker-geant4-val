@@ -16,7 +16,7 @@ conf=`echo $2 | sed -r 's/^\.?\/?validation\///' | sed 's/\/run.mac//' | sed 's/
 
 echo "Starting, output in $PWD/${1}-${conf}.cout.log and $PWD/${1}-${conf}.cerr.log"
 set +e
-ProcessTest -f CSV -p $1 $2 1> ${1}-${conf}.cout.log 2> ${1}-${conf}.cerr.log  
+ProcessTest -f CSV -p $1 $2 2> >(tee $PWD/${1}-${conf}.cerr.log) 1> >(tee $PWD/${1}-${conf}.cout.log) 
 
 set -e
 echo "Done, copying output to /output/${1}-${conf}.tgz"
