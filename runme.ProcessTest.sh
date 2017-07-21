@@ -12,8 +12,8 @@ echo "Running ProcessTest version: "`ProcessTest --version`" in: "`pwd`
 echo "Geant4 Version: "`geant4-config --version`
 date
 
-#Removed initial "[./]validation/" final "/run.mac" and replace "/" with "-"
-conf=`echo $2 | sed -r 's/^\.?\/?validation\///' | sed 's/\/run.mac//' | sed 's/\//-/g'`
+#Removed initial "[./]validation/" final "/run.mac" and replace "/" with "-" and "#" with "_"
+conf=`echo $2 | sed -r 's/^\.?\/?validation\///' | sed 's/\/run.mac//' | sed 's/\//-/g' | sed 's/#/_/g'`
 
 echo "Starting, output in $PWD/${1}-${conf}.cout.log and $PWD/${1}-${conf}.cerr.log"
 set +e
