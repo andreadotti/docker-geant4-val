@@ -1,4 +1,4 @@
-FROM andreadotti/geant4
+FROM andreadotti/geant4:10.4.p01
 MAINTAINER Andrea Dotti (adotti@slac.stanford.edu)
 
 #Add Azure CLI
